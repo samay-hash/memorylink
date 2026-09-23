@@ -9,28 +9,10 @@
     "start": "next start",
     "lint": "eslint",
     "postinstall": "prisma skills sync || exit 0",
-    "electron:dev": "concurrently \"npm run dev\" \"wait-on http://localhost:3000 && electron .\"",
-    "build:mac": "npm run build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/ && electron-builder --mac"
+    "tauri:dev": "tauri dev",
+    "build:mac": "tauri build"
   },
-  "build": {
-    "appId": "com.samayhash.memorylink",
-    "productName": "MemoryLink",
-    "mac": {
-      "category": "public.app-category.productivity",
-      "target": ["dmg"]
-    },
-    "directories": {
-      "output": "dist"
-    },
-    "files": [
-      "electron/main.js",
-      "electron/loading.html",
-      ".next/standalone/**/*"
-    ],
-    "extraMetadata": {
-      "main": "electron/main.js"
-    }
-  },
+
   "dependencies": {
     "@base-ui/react": "^1.8.0",
     "@mozilla/readability": "^0.6.0",
@@ -63,18 +45,16 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@tauri-apps/api": "^2.11.1",
+    "@tauri-apps/cli": "^2.11.5",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "concurrently": "^10.0.5",
-    "electron": "^44.4.5",
-    "electron-builder": "^26.15.3",
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
     "get-port": "^7.2.0",
     "prisma": "^8.0.0-rc.15",
     "tailwindcss": "^4",
-    "typescript": "^5",
-    "wait-on": "^9.1.0"
+    "typescript": "^5"
   }
 }
