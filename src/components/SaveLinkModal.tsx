@@ -59,8 +59,14 @@ export function SaveLinkModal({ open, onOpenChange }: SaveLinkModalProps) {
       setCurrentStep(steps.length);
 
       if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || "Failed to save link");
+        let errorMessage = "Failed to save link";
+        try {
+          const data = await res.json();
+          errorMessage = data.error || errorMessage;
+        } catch (e) {
+          errorMessage = `Server Error (${res.status}). The request took too long.`;
+        }
+        throw new Error(errorMessage);
       }
 
       const data = await res.json();

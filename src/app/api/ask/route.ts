@@ -3,6 +3,8 @@ import groq from "@/lib/groq";
 import { pinecone, indexName } from "@/lib/pinecone";
 import { generateEmbedding } from "@/lib/embeddings";
 
+export const maxDuration = 60; // Allow up to 60 seconds for RAG and AI on Vercel
+
 export async function POST(req: NextRequest) {
   try {
     const { question, links } = await req.json();

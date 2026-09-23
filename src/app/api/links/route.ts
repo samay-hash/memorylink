@@ -4,6 +4,8 @@ import groq from "@/lib/groq";
 import { pinecone, indexName } from "@/lib/pinecone";
 import { generateEmbedding, chunkText } from "@/lib/embeddings";
 
+export const maxDuration = 60; // Allow up to 60 seconds for scraping + AI on Vercel
+
 // In-memory store (replaces DB until password is set)
 // When DATABASE_URL is properly set, swap this for Prisma calls
 const inMemoryLinks: SavedLink[] = [];
