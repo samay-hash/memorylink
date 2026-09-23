@@ -2,6 +2,7 @@ import { pipeline, env } from '@xenova/transformers';
 
 // Disable local model downloading in production, use CDN
 env.allowLocalModels = false;
+env.cacheDir = '/tmp/'; // Fix Vercel read-only filesystem crash
 
 // We use all-MiniLM-L6-v2 which creates 384-dimensional embeddings
 let embedder: any = null;
